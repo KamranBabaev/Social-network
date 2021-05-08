@@ -1,0 +1,14 @@
+.post {
+    width: 700px;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    border: 1px solid #4c4c4c;
+    border-radius: 15px 15px 15px 0;
+    background-color: rgb(229, 227, 227);
+}
+
+.post img {
+    width: 65px;
+    height: 65px;
+    border-radius: 65%;
+}

@@ -1,0 +1,33 @@
+.allMyPosts {
+    margin: 10px 0 10px 25px;
+}
+
+.MyPosts textarea {
+    min-width: 700px;
+    padding: 10px;
+    max-width: 1000px;
+    min-height: 70px;
+    max-height: 2000px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.MyPosts button {
+    width: 100px;
+    height: 28px;
+    margin-right: 10px;
+    transition: 0.2s;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #ffffff;
+    border: solid 1px #959393;
+}
+
+.MyPosts button:hover {
+    background-color: #d8cd01; /* Green */
+    transition: 0.2s;
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.7);}
+
+
