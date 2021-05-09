@@ -3,6 +3,7 @@ import styles from './Post.module.css'
 import {MyPostsPropsType} from "../MyPosts";
 import likeIcon from './heart.png'
 
+
 const Post = (props: MyPostsPropsType) => {
     return (
         <div className={styles.posts}>
