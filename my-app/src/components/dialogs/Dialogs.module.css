@@ -1,0 +1,27 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialog {
+    padding: 15px;
+}
+
+.message {
+    padding: 15px;
+}
+
+.navlink {
+    color: coral;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.messages .active {
+    color: coral;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+}
+

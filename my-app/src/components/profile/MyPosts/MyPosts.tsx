@@ -4,6 +4,7 @@ import Post from "./Post/Post";
 
 export type MyPostsPropsType = {
     message: string;
+    likeCounts: number;
 }
 const MyPosts = () => {
     return (
@@ -15,8 +16,8 @@ const MyPosts = () => {
                 <button>удалить</button>
             </div>
             <div className={styles.Posts}>
-                <Post message='Привет, как ты?'/>
-                <Post message='Что сейчас учишь?'/>
+                <Post message='Привет, как ты?' likeCounts={11}/>
+                <Post message='Что сейчас учишь?' likeCounts={11}/>
             </div>
         </div>
     )
