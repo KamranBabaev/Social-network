@@ -6,7 +6,6 @@ export type MyPostsPropsType = {
     posts: Array<PostPropsType>
 }
 
-
 const MyPosts = (props: MyPostsPropsType) => {
 
     let postElements = props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts} id={p.id}/>)

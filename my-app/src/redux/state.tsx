@@ -37,7 +37,6 @@ let state: stateType = {
             {id: 4, name: 'Питер Паркер'},
             {id: 5, name: 'Тони Старк'},
         ],
-
         messages: [
             {id: 1, message: 'Что интересного расскажешь?'},
             {id: 2, message: 'Куда поехал?'},
@@ -45,7 +44,6 @@ let state: stateType = {
             {id: 4, message: 'Куда поехал?'},
         ],
     },
-
     profilePage: {
         posts: [
             {id: 1, message: 'Привет, как ты?', likeCounts: 11},

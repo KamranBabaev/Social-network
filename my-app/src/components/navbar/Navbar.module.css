@@ -7,7 +7,7 @@
     font-weight: 600;
 }
 
-.item, activeLink {
+.item {
     padding: 14px;
     display: block;
     border-bottom: 1px solid #4c4c4c;

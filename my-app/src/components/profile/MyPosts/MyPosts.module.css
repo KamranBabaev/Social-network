@@ -2,6 +2,10 @@
     margin-left: 25px;
 }
 
+.MyPosts {
+    margin-bottom: 20px;
+}
+
 .MyPosts textarea {
     min-width: 700px;
     padding: 10px;
@@ -27,7 +31,6 @@
     background-color: #d8cd01; /* Green */
     transition: 0.2s;
     cursor: pointer;
-    font-size: 15px;
     box-shadow: 0 0 10px rgba(0,0,0,0.7);
 }
 
