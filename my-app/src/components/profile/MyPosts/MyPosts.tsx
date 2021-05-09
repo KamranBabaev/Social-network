@@ -1,27 +1,15 @@
 import React from "react";
 import styles from './MyPosts.module.css'
-import Post from "./Post/Post";
+import Post, {PostPropsType} from "./Post/Post";
 
 export type MyPostsPropsType = {
-    likeCounts: number;
-    id: number;
-    message: string;
-}
-
-export type PostDataPropsType = {
-    id: number;
-    message: string;
-    likeCounts: number;
+    posts: Array<PostPropsType>
 }
 
 
 const MyPosts = (props: MyPostsPropsType) => {
 
-    let PostData = [
-        {id: 1, message: 'Привет, как ты?', likeCounts: 11},
-        {id: 2, message: 'Что сейчас учишь?', likeCounts: 19},
-        {id: 3, message: 'Захвати пиццу по пути', likeCounts: 26},
-    ]
+    let postElements = props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts} id={p.id}/>)
 
     return (
         <div className={styles.allMyPosts}>
@@ -32,9 +20,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                 <button>удалить</button>
             </div>
             <div className={styles.Posts}>
-                <Post message={PostData[0].message}
-                      likeCounts={PostData[0].likeCounts}
-                      id={PostData[0].id}/>
+                {postElements}
             </div>
         </div>
     )

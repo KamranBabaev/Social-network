@@ -1,16 +1,20 @@
 import React from "react";
 import styles from './Post.module.css'
-import {MyPostsPropsType} from "../MyPosts";
 import likeIcon from './heart.png'
+import avaPhoto from './ddd.jpg'
 
+export type PostPropsType = {
+    id: number;
+    message: string;
+    likeCounts: number;
+}
 
-const Post = (props: MyPostsPropsType) => {
+const Post = (props: PostPropsType) => {
     return (
         <div className={styles.posts}>
             <div className={styles.post}>
                 <img className={styles.postAvatar}
-                    src="https://cdn23.img.ria.ru/images/148839/96/1488399659_0:0:960:960_600x0_80_0_1_e38b72053fffa5d3d7e82d2fe116f0b3.jpg"
-                    alt="avatar"/>
+                    src={avaPhoto} alt="avatar"/>
                 {props.message}
             </div>
             <div className={styles.like}>
