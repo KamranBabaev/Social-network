@@ -8,7 +8,7 @@ export type MessagePropsType = {
 const Message = (props: MessagePropsType) => {
     return (
         <div className={styles.message + ' ' + styles.active}>
-            {props.message}
+            <textarea className={styles.textMessage}>{props.message}</textarea>
         </div>
     )
 }

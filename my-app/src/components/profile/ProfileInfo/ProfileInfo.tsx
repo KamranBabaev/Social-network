@@ -7,9 +7,8 @@ const ProfileInfo = () => {
     return (
         <div className={styles.profileInfo}>
             <div>
-                <img
-                    src={contentPhoto}
-                    alt=""/>
+                <img src={contentPhoto}
+                     alt=""/>
             </div>
             <div className={styles.description}>
                 ava+ description

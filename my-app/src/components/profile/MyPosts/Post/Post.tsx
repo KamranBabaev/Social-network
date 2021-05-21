@@ -4,7 +4,7 @@ import likeIcon from './heart.png'
 import avaPhoto from './ddd.jpg'
 
 export type PostPropsType = {
-    id: number;
+    id: string;
     message: string;
     likeCounts: number;
 }

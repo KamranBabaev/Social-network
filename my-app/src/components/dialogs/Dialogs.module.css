@@ -25,3 +25,14 @@
     text-decoration: none;
 }
 
+.textMessage {
+    width: 800px;
+    min-height: 100px;
+}
+
+.dialog img {
+    width: 65px;
+    height: 65px;
+    border-radius: 65%;
+}
+
