@@ -20,9 +20,16 @@ const App = () => {
 
     let [filter, setFilter] = useState<FilterValuesType>('ALL')
 
+
     const removeTask = (id: string) => {
         let filteredTasks = tasks.filter(t => t.id !== id)
         setTasks(filteredTasks)
+    }
+
+    const addTask = (title: string) => {
+        let newTask = {id: v1(), title, isDone: false}
+        let newTasks = [newTask, ...tasks]
+        setTasks(newTasks)
     }
 
     let tasksForTodolist = tasks;
@@ -37,12 +44,14 @@ const App = () => {
         setFilter(value)
     }
 
+
     return (
         <div className='appWrapper'>
             <Todolist tasks={tasksForTodolist}
                       title='План на сегодня:'
                       removeTask={removeTask}
                       changeFilter={changeFilter}
+                      addTask={addTask}
             />
         </div>
     )
