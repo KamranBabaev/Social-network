@@ -19,7 +19,7 @@ export function Todolist(props: TodolistPropsType) {
 
 
     const tasksElements = props.tasks
-        .map(t => {
+        .map( t => {
             const onClickHandler = () => props.removeTask(t.id)
             const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
                 props.changeStatus(t.id, e.currentTarget.checked)
@@ -40,7 +40,7 @@ export function Todolist(props: TodolistPropsType) {
         setNewTaskTitle(text)
     }
 
-    const onKeyPressClick = (event: KeyboardEvent<HTMLInputElement>) => {
+    const onKeyPressClickAddTask = (event: KeyboardEvent<HTMLInputElement>) => {
         setError('')
         if (event.key === 'Enter') {
             props.addTask(newTaskTitle)
@@ -69,7 +69,7 @@ export function Todolist(props: TodolistPropsType) {
             <div>
                 <input value={newTaskTitle}
                        onChange={newTaskElement}
-                       onKeyPress={onKeyPressClick}
+                       onKeyPress={onKeyPressClickAddTask}
                        className={error ? 'error' : ''}
                 />
                 <button onClick={onClickAddTask}>+</button>
