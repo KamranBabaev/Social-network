@@ -13,9 +13,9 @@ export type FilterValuesType = 'ALL' | 'ACTIVE' | 'DONE'
 const App = () => {
 
     let [tasks, setTasks] = useState([
-        {id: v1(), title: 'HTML', isDone: true},
-        {id: v1(), title: 'HTML', isDone: true},
-        {id: v1(), title: 'HTML', isDone: true},
+        {id: v1(), title: 'HTML', isDone: false},
+        {id: v1(), title: 'HTML', isDone: false},
+        {id: v1(), title: 'HTML', isDone: false},
     ])
 
     let [filter, setFilter] = useState<FilterValuesType>('ALL')
@@ -44,6 +44,14 @@ const App = () => {
         setFilter(value)
     }
 
+    const changeStatus = (id: string, isDone: boolean) => {
+        let task = tasks.find( t => t.id === id)
+        if (task) {
+            task.isDone = isDone
+            setTasks([...tasks])
+        }
+    }
+
 
     return (
         <div className='appWrapper'>
@@ -52,6 +60,8 @@ const App = () => {
                       removeTask={removeTask}
                       changeFilter={changeFilter}
                       addTask={addTask}
+                      changeStatus={changeStatus}
+                      filter={filter}
             />
         </div>
     )
