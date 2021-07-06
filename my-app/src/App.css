@@ -1,6 +1,7 @@
 .appWrapper {
     display: flex;
     font-size: 22px;
+    padding: 30px;
 }
 
 .error {
