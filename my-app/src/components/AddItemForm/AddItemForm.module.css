@@ -1,0 +1,9 @@
+.itemForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.itemForm input {
+    width: 250px;
+}
