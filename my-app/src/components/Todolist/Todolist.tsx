@@ -1,6 +1,7 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from "react";
+import React, {ChangeEvent} from "react";
 import {TaskType} from "../../App";
 import styles from './Todolist.module.css';
+import {AddItemForm} from "../AddItemForm/AddItemForm";
 
 export type FilterValuesType = 'ALL' | 'ACTIVE' | 'DONE'
 
@@ -18,10 +19,6 @@ export type TodolistPropsType = {
 
 export function Todolist(props: TodolistPropsType) {
 
-    let [newTaskTitle, setNewTaskTitle] = useState<string>('')
-    let [error, setError] = useState<string | null>(null)
-
-    debugger
     const tasksElements = props.tasks
         .map(t => {
             const onClickHandler = () => props.removeTask(t.id, props.id)
@@ -39,26 +36,8 @@ export function Todolist(props: TodolistPropsType) {
             </li>
         })
 
-    const newTaskElement = (event: ChangeEvent<HTMLInputElement>) => {
-        let text = event.currentTarget.value
-        setNewTaskTitle(text)
-    }
-
-    const onKeyPressClickAddTask = (event: KeyboardEvent<HTMLInputElement>) => {
-        setError('')
-        if (event.key === 'Enter') {
-            props.addTask(newTaskTitle, props.id)
-            setNewTaskTitle('')
-        }
-    }
-
-    const onClickAddTask = () => {
-        if (newTaskTitle.trim() !== '') {
-            props.addTask(newTaskTitle.trim(), props.id)
-            setNewTaskTitle('')
-        } else {
-            setError('ошибочка...')
-        }
+    const addTask = (title: string) => {
+        props.addTask(title, props.id)
     }
 
     const onClickAll = () => props.changeFilter('ALL', props.id)
@@ -74,15 +53,7 @@ export function Todolist(props: TodolistPropsType) {
                 <button onClick={removeTodolist}>x</button>
             </h4>
 
-            <div>
-                <input value={newTaskTitle}
-                       onChange={newTaskElement}
-                       onKeyPress={onKeyPressClickAddTask}
-                       className={error ? 'error' : ''}
-                />
-                <button onClick={onClickAddTask}>+</button>
-                {error ? <div className='error-message'>{error}</div> : ''}
-            </div>
+            <AddItemForm addItem={addTask}/>
 
             <ul>
                 {tasksElements}
@@ -97,3 +68,4 @@ export function Todolist(props: TodolistPropsType) {
         </div>
     )
 }
+
