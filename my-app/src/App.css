@@ -1,19 +1,10 @@
-.appWrapper {
+.header {
     display: flex;
-    font-size: 22px;
-    padding: 30px;
-    font-family: "Source Sans Pro", sans-serif;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.error {
-    border: #cd0606 1px solid;
-}
-
-.error-message {
-    color: #cd0606;
-    font-size: 12px;
-}
-
-.active-filter {
-    background-color: coral;
+.todolistItem:hover {
+    transform: translateY(-5px);
+    transition: 150ms ease-in-out;
 }

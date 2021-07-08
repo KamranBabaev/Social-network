@@ -32,7 +32,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
         setNewTaskTitle(text)
     }
 
-    let [error, setError] = useState<string | null>(null)
+    const [error, setError] = useState<string | null>(null)
 
     return <div className={styles.itemForm}>
         <TextField value={newTaskTitle}
@@ -41,11 +41,12 @@ export function AddItemForm(props: AddItemFormPropsType) {
                    label="new task..."
                    variant="outlined"
                    error={!!error}
+                   helperText={error}
+                   color="secondary"
         />
         <Button size="large"
                 onClick={onClickAddTask}
                 color="secondary"><AddIcon color="secondary"/></Button>
-        {error ? <div className='error-message'>{error}</div> : ''}
     </div>
 
 }

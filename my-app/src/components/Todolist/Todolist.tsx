@@ -48,7 +48,7 @@ export function Todolist(props: TodolistPropsType) {
                 props.changeTaskTitle(t.id, value, props.id)
             }
 
-            return <li key={t.id} className={styles.tasksBlock}>
+            return <div key={t.id} className={styles.tasksBlock}>
                 <Checkbox onChange={onChangeStatusHandler}
                           checked={t.isDone}
                 />
@@ -59,7 +59,7 @@ export function Todolist(props: TodolistPropsType) {
                         variant="contained"
                         color="primary"
                         size="small">x</Button>
-            </li>
+            </div>
         })
 
     return (
@@ -71,9 +71,9 @@ export function Todolist(props: TodolistPropsType) {
 
             <AddItemForm addItem={addTask}/>
 
-            <ul>
+            <div>
                 {tasksElements}
-            </ul>
+            </div>
 
             <div className={styles.filterBTN}>
                 <Button onClick={onClickAll}

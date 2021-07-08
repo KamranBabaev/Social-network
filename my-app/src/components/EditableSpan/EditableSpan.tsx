@@ -26,6 +26,6 @@ export function EditableSpan(props: EditableSpanPropsType) {
     }
 
     return editMode
-        ? <TextField value={value} onBlur={onActiveVewMode} onChange={onChangeValue} autoFocus/>
+        ? <TextField multiline value={value} onBlur={onActiveVewMode} onChange={onChangeValue} autoFocus/>
         : <span onDoubleClick={onActiveEditMode}>{props.title}</span>
 }

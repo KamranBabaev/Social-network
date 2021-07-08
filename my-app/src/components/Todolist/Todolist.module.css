@@ -1,29 +1,8 @@
-li {
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.todolists {
-    width: 350px;
-    border: 2px solid #424242;
-    border-radius: 20px;
-    margin-right: 20px;
-    padding: 20px;
-    transition: 150ms ease-in-out;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-}
-
-.todolists:hover {
-    transform: translateY(-5px);
-    transition: 150ms ease-in-out;
-}
-
 .tasksBlock {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 10px;
 }
 
 .todolists p {
@@ -33,6 +12,7 @@ li {
 }
 
 .filterBTN {
+    margin-top: 10px;
     display: flex;
     justify-content: space-around;
 }
