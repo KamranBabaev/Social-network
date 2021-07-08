@@ -139,7 +139,7 @@ const App = () => {
                             }
 
                             return <Grid item>
-                                <Paper elevation={5} style={{padding: '20px'}}>
+                                <Paper elevation={7} style={{padding: '20px', border: '2px solid gray'}}>
                                     <Todolist key={tl.id}
                                               id={tl.id}
                                               tasks={tasksForTodolist}
