@@ -13,6 +13,8 @@ import {
     todolistsReducer
 } from "./state/todolists-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
 
 export type TaskType = {
     id: string
@@ -28,68 +30,56 @@ export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
-const AppWithReducers = () => {
+const AppWithRedux = () => {
 
-    let todolistID1 = v1();
-    let todolistID2 = v1();
+    const dispatch = useDispatch()
 
-    const [todolists, dispathToTodolists] = useReducer(todolistsReducer, [
-        {id: todolistID1, title: 'План обучения на сегодня', filter: 'ALL'},
-        {id: todolistID2, title: 'Список покупок', filter: 'ALL'},
-    ])
+    const todolists = useSelector<AppRootStateType, Array<TodolistType>>(state => state.todolists)
 
-    const [tasks, dispathToTasks] = useReducer(tasksReducer, {
-        [todolistID1]: [
-            {id: v1(), title: 'HTML', isDone: false},
-            {id: v1(), title: 'React', isDone: false},
-            {id: v1(), title: 'Redux', isDone: false},
-        ],
-        [todolistID2]: [
-            {id: v1(), title: 'конфеты', isDone: false},
-            {id: v1(), title: 'молоко', isDone: false},
-            {id: v1(), title: 'хлеб', isDone: false},
-        ]
-    })
+    const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
 
-    const removeTask = (id: string, todolistID: string) => {
-        const action = removeTaskAC(id, todolistID)
-        dispathToTasks(action)
-    }
-
-    const addTask = (title: string, todolistID: string) => {
-        const action = addTaskAC(title, todolistID)
-        dispathToTasks(action)
-    }
+    // todolist actions
 
     const changeFilter = (todolistID: string, value: FilterValuesType) => {
         const action = changeTodolistFilterAC(todolistID, value)
-        dispathToTodolists(action)
-    }
-
-    const changeStatus = (id: string, isDone: boolean, todolistID: string) => {
-        const action = changeTaskStatusAC(id, isDone, todolistID)
-        dispathToTasks(action)
+        dispatch(action)
     }
 
     const removeTodolist = (id: string) => {
         const action = removeTodolistAC(id)
-        dispathToTodolists(action)
+        dispatch(action)
     }
 
     const addTodolist = (title: string) => {
         const action = addTodolistAC(title)
-        dispathToTodolists(action)
-        dispathToTasks(action)
-    }
-
-    const changeTaskTitle = (id: string, value: string, todolistID: string) => {
-        const action = changeTaskTitleAC(id, value, todolistID)
-        dispathToTasks(action)
+        dispatch(action)
     }
 
     const changeTodolistTitle = (id: string, value: string) => {
         const action = changeTodolistTitleAC(id, value)
-        dispathToTodolists(action)
+        dispatch(action)
+    }
+
+    // tasks actions
+
+    const addTask = (title: string, todolistID: string) => {
+        const action = addTaskAC(title, todolistID)
+        dispatch(action)
+    }
+
+    const removeTask = (id: string, todolistID: string) => {
+        const action = removeTaskAC(id, todolistID)
+        dispatch(action)
+    }
+
+    const changeStatus = (id: string, isDone: boolean, todolistID: string) => {
+        const action = changeTaskStatusAC(id, isDone, todolistID)
+        dispatch(action)
+    }
+
+    const changeTaskTitle = (id: string, value: string, todolistID: string) => {
+        const action = changeTaskTitleAC(id, value, todolistID)
+        dispatch(action)
     }
 
     return (
@@ -117,12 +107,14 @@ const AppWithReducers = () => {
                     {
                         todolists.map(tl => {
 
-                            let tasksForTodolist = tasks[tl.id];
+                            let allTodolistsTasks = tasks[tl.id];
+                            let tasksForTodolist = allTodolistsTasks
+
                             if (tl.filter === 'ACTIVE') {
-                                tasksForTodolist = tasksForTodolist.filter(t => !t.isDone)
+                                tasksForTodolist = allTodolistsTasks.filter(t => !t.isDone)
                             }
                             if (tl.filter === 'DONE') {
-                                tasksForTodolist = tasksForTodolist.filter(t => t.isDone)
+                                tasksForTodolist = allTodolistsTasks.filter(t => t.isDone)
                             }
 
                             return <Grid item>
@@ -145,11 +137,9 @@ const AppWithReducers = () => {
                         })
                     }
                 </Grid>
-
             </Container>
-
         </div>
     )
 }
 
-export default AppWithReducers;
+export default AppWithRedux;
