@@ -40,6 +40,11 @@ export type RemoveTodolistAT = {
     todolistID: string
 }
 
+<<<<<<< Updated upstream
+=======
+// так как может приходить undefined и мап по нему выдаст ошибку
+const initState: TasksStateType = {}
+>>>>>>> Stashed changes
 
 let todolistID1 = v1();
 let todolistID2 = v1();
