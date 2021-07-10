@@ -40,29 +40,10 @@ export type RemoveTodolistAT = {
     todolistID: string
 }
 
-<<<<<<< Updated upstream
-=======
 // так как может приходить undefined и мап по нему выдаст ошибку
 const initState: TasksStateType = {}
->>>>>>> Stashed changes
 
-let todolistID1 = v1();
-let todolistID2 = v1();
-
-const initialState: TasksStateType = {
-    [todolistID1]: [
-        {id: v1(), title: 'HTML', isDone: false},
-        {id: v1(), title: 'React', isDone: false},
-        {id: v1(), title: 'Redux', isDone: false},
-    ],
-    [todolistID2]: [
-        {id: v1(), title: 'конфеты', isDone: false},
-        {id: v1(), title: 'молоко', isDone: false},
-        {id: v1(), title: 'хлеб', isDone: false},
-    ]
-}
-
-export const tasksReducer = (state: TasksStateType = initialState, action: ActionsType): TasksStateType => {
+export const tasksReducer = (state: TasksStateType = initState, action: ActionsType): TasksStateType => {
     switch (action.type) {
 
         case "REMOVE-TASKS": {

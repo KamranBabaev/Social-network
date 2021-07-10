@@ -27,20 +27,10 @@ export type ChangeTodolistFilterAT = {
 
 type ActionsType = RemoveTodolistAT | AddTodolistAT | ChangeTodolistTitleAT | ChangeTodolistFilterAT
 
-<<<<<<< Updated upstream
-let todolistID1 = v1();
-let todolistID2 = v1();
-=======
 // так как может приходить undefined и мап по нему выдаст ошибку
 const initState: Array<TodolistType> = []
->>>>>>> Stashed changes
 
-const initialState: Array<TodolistType> = [
-    {id: todolistID1, title: 'План обучения на сегодня', filter: 'ALL'},
-    {id: todolistID2, title: 'Список покупок', filter: 'ALL'},
-]
-
-export const todolistsReducer = (state: Array<TodolistType> = initialState, action: ActionsType): Array<TodolistType> => {
+export const todolistsReducer = (state: Array<TodolistType> = initState, action: ActionsType): Array<TodolistType> => {
     switch (action.type) {
 
         case "REMOVE-TODOLIST":
