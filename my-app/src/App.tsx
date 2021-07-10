@@ -56,7 +56,7 @@ const App = () => {
         setTasks({...tasks})
     }
 
-    const changeFilter = (value: FilterValuesType, todolistID: string) => {
+    const changeFilter = (todolistID: string, value: FilterValuesType) => {
         let todolist = todolists.find(tl => tl.id === todolistID)
         if (todolist) {
             todolist.filter = value
