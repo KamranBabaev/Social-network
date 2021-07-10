@@ -8,3 +8,8 @@
     transform: translateY(-5px);
     transition: 150ms ease-in-out;
 }
+
+.appWrapper {
+    font-size: 22px;
+    font-family: "Source Sans Pro", cursive, sans-serif;
+}
