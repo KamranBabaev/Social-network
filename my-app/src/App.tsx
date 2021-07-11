@@ -3,7 +3,7 @@ import './App.css';
 import {FilterValuesType, Todolist} from "./components/Todolist/Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./components/AddItemForm/AddItemForm";
-import {AppBar, Backdrop, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
 
 export type TaskType = {
@@ -141,6 +141,7 @@ const App = () => {
                             return <Grid item>
                                 <Paper elevation={7} style={{padding: '20px', border: '2px solid gray'}}>
                                     <Todolist key={tl.id}
+                                              todolistID={tl.id}
                                               id={tl.id}
                                               tasks={tasksForTodolist}
                                               title={tl.title}

@@ -1,5 +1,6 @@
-import {TasksStateType} from "../App";
 import {v1} from "uuid";
+import {TaskType} from "../AppWithRedux";
+import {todolistID1, todolistID2} from "./todolists-reducer";
 
 type ActionsType = RemoveTaskAT | AddTaskAT | ChangeTaskStatusAT | ChangeTaskTitleAT | AddTodolistAT | RemoveTodolistAT
 
@@ -40,48 +41,59 @@ export type RemoveTodolistAT = {
     todolistID: string
 }
 
+export type TasksStateType = {
+    [key: string]: Array<TaskType>
+}
+
+
 // так как может приходить undefined и мап по нему выдаст ошибку
-const initState: TasksStateType = {}
+const initState: TasksStateType = {
+    [todolistID1]: [
+        {id: v1(), title: 'CSS', isDone: false},
+        {id: v1(), title: 'HTML', isDone: false},
+        {id: v1(), title: 'JS', isDone: false},
+    ],
+    [todolistID2]: [
+        {id: v1(), title: 'продукты', isDone: false},
+        {id: v1(), title: 'книги', isDone: false},
+        {id: v1(), title: 'мебель', isDone: false},
+    ]
+}
 
 export const tasksReducer = (state: TasksStateType = initState, action: ActionsType): TasksStateType => {
     switch (action.type) {
 
-        case "REMOVE-TASKS": {
-            const copyState = {...state}
-            const tasks = state[action.todolistID]
-            const filteredTasks = tasks.filter((t => t.id !== action.id))
-            copyState[action.todolistID] = filteredTasks
-            return copyState
-        }
+        case "REMOVE-TASKS":
+            return {
+                ...state,
+                [action.todolistID]: state[action.todolistID].filter(t => t.id !== action.id)
+            }
 
         case "ADD-TASK": {
-            const copyState = {...state}
-            const tasks = copyState[action.todolistID]
             const newTask = {id: action.todolistID, title: action.title, isDone: false}
-            const newTasks = [newTask, ...tasks]
-            copyState[action.todolistID] = newTasks
-            return copyState
+            return {
+                ...state,
+                [action.todolistID]: [newTask, ...state[action.todolistID]]
+            }
         }
 
-        case "CHANGE-TASK-STATUS": {
-            const copyState = {...state}
-            const tasks = copyState[action.todolistID]
-            const task = tasks.find(t => t.id === action.id)
-            if (task) {
-                task.isDone = action.isDone
+        case "CHANGE-TASK-STATUS":
+            return {
+                ...state,
+                [action.todolistID]: state[action.todolistID]
+                    .map(t => t.id === action.id
+                        ? {...t, isDone: action.isDone}
+                        : t)
             }
-            return copyState
-        }
 
-        case "CHANGE-TASK-TITLE": {
-            const copyState = {...state}
-            const tasks = copyState[action.todolistID]
-            const task = tasks.find(t => t.id === action.id)
-            if (task) {
-                task.title = action.title
+        case "CHANGE-TASK-TITLE":
+            return {
+                ...state,
+                [action.todolistID]: state[action.todolistID]
+                    .map(t => t.id === action.id
+                        ? {...t, title: action.title}
+                        : t)
             }
-            return copyState
-        }
 
         case "ADD-TODOLIST": {
             return {...state, [action.todolistID]: []}

@@ -129,6 +129,7 @@ const AppWithReducers = () => {
                                 <Paper elevation={7} style={{padding: '20px', border: '2px solid gray'}}>
                                     <Todolist key={tl.id}
                                               id={tl.id}
+                                              todolistID={tl.id}
                                               tasks={tasksForTodolist}
                                               title={tl.title}
                                               filter={tl.filter}

@@ -1,6 +1,6 @@
-import {TodolistType} from "../App";
 import {v1} from "uuid";
 import {FilterValuesType} from "../components/Todolist/Todolist";
+import {TodolistType} from "../AppWithRedux";
 
 export type RemoveTodolistAT = {
     type: "REMOVE-TODOLIST"
@@ -27,8 +27,13 @@ export type ChangeTodolistFilterAT = {
 
 type ActionsType = RemoveTodolistAT | AddTodolistAT | ChangeTodolistTitleAT | ChangeTodolistFilterAT
 
-// так как может приходить undefined и мап по нему выдаст ошибку
-const initState: Array<TodolistType> = []
+export let todolistID1 = v1()
+export let todolistID2 = v1()
+
+const initState: Array<TodolistType> = [
+    {id: todolistID1, title: 'План обучения 22.06', filter: 'ALL'},
+    {id: todolistID2, title: 'Нужно сегодня купить', filter: 'ALL'},
+]
 
 export const todolistsReducer = (state: Array<TodolistType> = initState, action: ActionsType): Array<TodolistType> => {
     switch (action.type) {
@@ -39,21 +44,17 @@ export const todolistsReducer = (state: Array<TodolistType> = initState, action:
         case "ADD-TODOLIST":
             return [...state, {id: action.todolistID, title: action.title, filter: "ALL"}]
 
-        case "CHANGE-TODOLIST-TITLE": {
-            const todolist = state.find(tl => tl.id === action.id)
-            if (todolist) {
-                todolist.title = action.title
-            }
-            return [...state]
-        }
+        case "CHANGE-TODOLIST-TITLE":
+            return state
+                .map(tl => tl.id === action.id
+                    ? {...tl, title: action.title}
+                    : tl)
 
-        case "CHANGE-TODOLIST-FILTER": {
-            const todolist = state.find(tl => tl.id === action.id)
-            if (todolist) {
-                todolist.filter = action.filter
-            }
-            return [...state]
-        }
+        case "CHANGE-TODOLIST-FILTER":
+            return state
+                .map(tl => tl.id === action.id
+                    ? {...tl, filter: action.filter}
+                    : tl)
 
         default:
             return state
