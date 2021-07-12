@@ -79,12 +79,12 @@ export const Todolist = React.memo(({
 
             <div>
                 {
-                    tasksForTodolist.map(t => <Task todolistID={id}
+                    tasksForTodolist.map((t, index) => <Task todolistID={id}
                                          removeTask={removeTask}
                                          changeStatus={changeStatus}
                                          changeTaskTitle={changeTodolistTitleCallback}
                                          task={t}
-                                         key={t.id}/>)
+                                         key={index}/>)
                 }
             </div>
 
