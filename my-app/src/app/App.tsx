@@ -1,23 +1,35 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './App.css'
 import {
   AppBar,
   Button,
   Container,
-  IconButton, LinearProgress,
+  IconButton,
+  LinearProgress,
   Toolbar,
   Typography
 } from '@material-ui/core'
 import {Menu} from '@material-ui/icons'
 import {TodolistsList} from '../features/TodolistsList/TodolistsList'
-import {useSelector} from "react-redux";
-import {AppRootStateType} from "./store";
-import {RequestStatusType} from "./app-reducer";
-import {ErrorSnackbar} from "../components/ErrorSnackbar/ErrorSnackbar";
+import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
+import {useDispatch, useSelector} from 'react-redux'
+import {AppRootStateType} from './store'
+import {initializeAppTC, RequestStatusType} from './app-reducer'
+import {Redirect, Route, Switch} from "react-router-dom";
+import {Login} from "../features/Login/Login";
 
-function App() {
+type PropsType = {
+  demo?: boolean
+}
 
-  const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
+function App({demo = false}: PropsType) {
+  const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(initializeAppTC())
+  }, [])
+
   return (
       <div className="App">
         <ErrorSnackbar/>
@@ -31,12 +43,16 @@ function App() {
             </Typography>
             <Button color="inherit">Login</Button>
           </Toolbar>
+          {status === 'loading' && <LinearProgress/>}
         </AppBar>
-        {
-          status === 'loading' && <LinearProgress color="secondary"/>
-        }
         <Container fixed>
-          <TodolistsList/>
+          <Switch>
+            <Route exact path={'/'}
+                   render={() => <TodolistsList demo={demo}/>}/>
+            <Route path={'/login'} render={() => <Login/>}/>
+            <Route path={'/404'} render={() => <h1>404: PAGE NOT FOUND</h1>}/>
+            <Redirect from={'*'} to={'/404'}/>
+          </Switch>
         </Container>
       </div>
   )
